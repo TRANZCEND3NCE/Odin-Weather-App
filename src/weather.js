@@ -7,9 +7,22 @@ async function getWeather(location) {
 
 	const data = await response.json();
 
-	console.log(data);
+	// console.log(data);
 
 	return data;
 }
 
-export { getWeather }
+function processWeatherData(data) {
+	const current = data.currentConditions;
+
+	return {
+		location: data.resolvedAddress,
+		temperature: current.temp,
+		feelsLike: current.feelslike,
+		condition: current.conditions,
+		humidity: current.humidity,
+		windSpeed: current.windspeed,
+	};
+}
+
+export { getWeather, processWeatherData }

@@ -1,10 +1,12 @@
 import "./style.css";
-import { getWeather } from "./weather.js";
+import { getWeather, processWeatherData } from "./weather.js";
 
 async function displayWeather() {
-	const weather = await getWeather("London, UK");
+	const data = await getWeather("London, UK");
 
-	console.log(weather.currentConditions.temp);
+	const weather = processWeatherData(data);
+
+	console.log(weather);
 }
 
 displayWeather();
