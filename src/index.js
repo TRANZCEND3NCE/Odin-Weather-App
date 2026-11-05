@@ -1,3 +1,10 @@
 import "./style.css";
+import { getWeather } from "./weather.js";
 
-console.log("Weather App is running!");
+async function displayWeather() {
+	const weather = await getWeather("London, UK");
+
+	console.log(weather.currentConditions.temp);
+}
+
+displayWeather();
