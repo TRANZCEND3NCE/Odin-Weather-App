@@ -1,12 +1,19 @@
 import "./style.css";
 import { getWeather, processWeatherData } from "./weather.js";
 
-async function displayWeather() {
-	const data = await getWeather("London, UK");
+const form = document.querySelector("#weather-form");
+const locationInput = document.querySelector("#location");
+
+form.addEventListener("submit", async (e) => {
+	e.preventDefault();
+
+	const location = locationInput.value.trim();
+
+	if (!location) return;
+
+	const data = await getWeather(location);
 
 	const weather = processWeatherData(data);
 
 	console.log(weather);
-}
-
-displayWeather();
+})
