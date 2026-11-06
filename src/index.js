@@ -11,9 +11,13 @@ form.addEventListener("submit", async (e) => {
 
 	if (!location) return;
 
-	const data = await getWeather(location);
+	try {
+		const data = await getWeather(location);
 
-	const weather = processWeatherData(data);
+		const weather = processWeatherData(data);
 
-	console.log(weather);
-})
+		console.log(weather);
+	} catch (error) {
+		console.error("Unable to retrieve weather:", error.message);
+	}
+});

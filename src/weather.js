@@ -5,9 +5,11 @@ async function getWeather(location) {
 
 	const response = await fetch(url);
 
-	const data = await response.json();
+	if (!response.ok) {
+		throw new Error(`Weather request failed: ${response.status}`);
+	}
 
-	// console.log(data);
+	const data = await response.json();
 
 	return data;
 }
