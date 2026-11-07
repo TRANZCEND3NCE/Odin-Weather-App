@@ -1,5 +1,6 @@
 import "./style.css";
 import { getWeather, processWeatherData } from "./weather.js";
+import { renderWeather } from "./dom.js";
 
 const form = document.querySelector("#weather-form");
 const locationInput = document.querySelector("#location");
@@ -16,7 +17,7 @@ form.addEventListener("submit", async (e) => {
 
 		const weather = processWeatherData(data);
 
-		console.log(weather);
+		renderWeather(weather);
 	} catch (error) {
 		console.error("Unable to retrieve weather:", error.message);
 	}
