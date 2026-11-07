@@ -1,16 +1,26 @@
 
 
-function renderWeather(weather) {
+function fahrenheitToCelsius(fahrenheit) {
+	return (fahrenheit - 32) * (5 / 9);
+}
+
+function formatTemperature(fahrenheit, unit) {
+	const value = unit === "C" ? fahrenheitToCelsius(fahrenheit) : fahrenheit;
+
+	return `${value.toFixed(1)}°${unit}`;
+}
+
+function renderWeather(weather, unit = "F") {
 	const weatherDisplay = document.querySelector("#weather-display");
 
 	const location = document.createElement("h2");
 	location.textContent = weather.location;
 
 	const temperature = document.createElement("p");
-	temperature.textContent = `Temperature: ${weather.temperature}°F`;
+	temperature.textContent = `Temperature: ${formatTemperature(weather.temperature, unit)}`;
 
 	const feelsLike = document.createElement("p");
-	feelsLike.textContent = `Feels Like: ${weather.feelsLike}°F`;
+	feelsLike.textContent = `Feels Like: ${formatTemperature(weather.feelsLike, unit)}`;
 
 	const condition = document.createElement("p");
 	condition.textContent = `Conditions: ${weather.condition}`;
