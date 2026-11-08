@@ -10,26 +10,35 @@ function formatTemperature(fahrenheit, unit) {
 	return `${value.toFixed(1)}°${unit}`;
 }
 
+function createWeatherCard(label, value) {
+	const card = document.createElement("p");
+
+	const labelElement = document.createElement("span");
+	labelElement.textContent = label;
+
+	const valueElement = document.createElement("span");
+	valueElement.textContent = value;
+
+	card.append(labelElement, valueElement);
+
+	return card;
+}
+
 function renderWeather(weather, unit = "F") {
 	const weatherDisplay = document.querySelector("#weather-display");
 
 	const location = document.createElement("h2");
 	location.textContent = weather.location;
 
-	const temperature = document.createElement("p");
-	temperature.textContent = `Temperature: ${formatTemperature(weather.temperature, unit)}`;
+	const temperature = createWeatherCard("Temperature", formatTemperature(weather.temperature, unit));
 
-	const feelsLike = document.createElement("p");
-	feelsLike.textContent = `Feels Like: ${formatTemperature(weather.feelsLike, unit)}`;
+	const feelsLike = createWeatherCard("Feels Like", formatTemperature(weather.feelsLike, unit));
 
-	const condition = document.createElement("p");
-	condition.textContent = `Conditions: ${weather.condition}`;
+	const condition = createWeatherCard("Conditions", weather.condition);
 
-	const humidity = document.createElement("p");
-	humidity.textContent = `Humidity: ${weather.humidity}%`;
+	const humidity = createWeatherCard("Humidity", `${weather.humidity}%`);
 
-	const windSpeed = document.createElement("p");
-	windSpeed.textContent = `Wind Speed: ${weather.windSpeed} mph`;
+	const windSpeed = createWeatherCard("Wind Speed", `${weather.windSpeed} mph`)
 
 	weatherDisplay.replaceChildren(
 		location,

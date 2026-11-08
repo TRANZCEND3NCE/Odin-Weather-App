@@ -36,3 +36,16 @@ unitToggle.addEventListener("click", () => {
 
 	unitToggle.textContent = `Show °${currentUnit === "F" ? "C" : "F"}`;
 });
+
+const sampleWeather = {
+  location: "Vancouver, Canada",
+  temperature: 68,
+  feelsLike: 67,
+  condition: "Partially cloudy",
+  humidity: 72,
+  windSpeed: 5,
+};
+
+currentWeather = sampleWeather;
+
+renderWeather(currentWeather, currentUnit);
