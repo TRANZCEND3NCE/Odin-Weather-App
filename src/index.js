@@ -1,10 +1,21 @@
 import "./style.css";
 import { getWeather, processWeatherData } from "./weather.js";
 import { renderWeather } from "./dom.js";
+import { createElement, Search } from "lucide";
 
 const form = document.querySelector("#weather-form");
 const locationInput = document.querySelector("#location");
-const unitToggle = document.querySelector("#unit-toggle");
+const errorDisplay = document.querySelector("#weather-error");
+const searchButton = document.querySelector("#search-button");
+const weatherDisplay = document.querySelector("#weather-display");
+
+const searchIcon = createElement(Search, {
+	"aria-hidden": "true",
+	width: 20,
+	height: 20,
+});
+
+searchButton.append(searchIcon);
 
 let currentWeather = null;
 let currentUnit = "F";
@@ -16,6 +27,9 @@ form.addEventListener("submit", async (e) => {
 
 	if (!location) return;
 
+	errorDisplay.textContent = "";
+	errorDisplay.hidden = true;
+
 	try {
 		const data = await getWeather(location);
 
@@ -24,17 +38,19 @@ form.addEventListener("submit", async (e) => {
 		renderWeather(currentWeather, currentUnit);
 	} catch (error) {
 		console.error("Unable to retrieve weather:", error.message);
+
+		errorDisplay.textContent = error.message;
+		errorDisplay.hidden = false;
 	}
 });
 
-unitToggle.addEventListener("click", () => {
-	if (!currentWeather) return;
+weatherDisplay.addEventListener("click", (e) => {
+	const unitsCard = e.target.closest(".units-card");
+
+	if (!unitsCard || !currentWeather) return;
 
 	currentUnit = currentUnit === "F" ? "C" : "F";
-
 	renderWeather(currentWeather, currentUnit);
-
-	unitToggle.textContent = `Show °${currentUnit === "F" ? "C" : "F"}`;
 });
 
 const sampleWeather = {
@@ -48,4 +64,4 @@ const sampleWeather = {
 
 currentWeather = sampleWeather;
 
-renderWeather(currentWeather, currentUnit);
+renderWeather(currentWeather, currentUnit); 

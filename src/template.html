@@ -13,7 +13,8 @@
 		<form id="weather-form">
 			<label for="location">Enter Location:</label>
 
-			<input
+			<div class="search-field">
+				<input
 				type="text"
 				id="location"
 				name="location"
@@ -21,12 +22,20 @@
 				required
 			/>
 
-			<button type="submit">Search</button>
+			<button 
+				type="submit"
+				id="search-button"
+				class="search-button"
+				aria-label="Search weather"
+			 ></button>
+			</div>
 		</form>
+
+		<p id="weather-error" role="alert" hidden></p>
 
 		<section id="weather-display"></section>
 
-		<button id="unit-toggle" type="button">Show °C</button>
+		<!-- <button id="unit-toggle" type="button">Show °C</button> -->
 	</main>
 	
 </body>
