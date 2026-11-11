@@ -55,7 +55,11 @@ form.addEventListener("submit", async (e) => {
 	} catch (error) {
 		console.error("Unable to retrieve weather:", error.message);
 
-		errorDisplay.textContent = error.message;
+		errorDisplay.textContent = 
+			error instanceof TypeError
+				? "Unable to connect to the weather service. Please check your internet connection and try again."
+				: error.message;
+				
 		errorDisplay.hidden = false;
 	} finally {
 

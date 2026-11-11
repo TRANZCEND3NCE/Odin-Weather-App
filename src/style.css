@@ -214,6 +214,16 @@ main {
 	animation: weather-spin 1s linear infinite;
 }
 
+.weather-empty {
+	margin: 0;
+	padding: 24px 16px;
+	border: 1px dashed rgba(255, 255, 255, 0.25);
+	border-radius: 12px;
+	color: #cbd5e1;
+	text-align: center;
+	font-size: 0.95rem;
+}
+
 @keyframes weather-spin {
 	to {
 		transform: rotate(360deg);

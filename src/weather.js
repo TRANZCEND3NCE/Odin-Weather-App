@@ -11,6 +11,18 @@ async function getWeather(location) {
 		);
 	}
 
+	if (response.status === 400) {
+		throw new Error(
+			"The weather service couldn't process that request. Check the location and try again."
+		);
+	}
+
+	if (response.status === 401) {
+		throw new Error(
+			"Weather service authentication failed. Please try again later."
+		);
+	}
+
 	if (!response.ok) {
 		throw new Error(`Weather request failed: ${response.status}`);
 	}
