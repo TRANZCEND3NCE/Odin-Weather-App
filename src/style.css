@@ -126,7 +126,6 @@ main {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	color: #fbbf24;
 	flex-shrink: 0;
 }
 

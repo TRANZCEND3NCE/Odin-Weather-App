@@ -74,30 +74,48 @@ function createUnitsCard(unit) {
 	return button;
 }
 
-function getWeatherIcon(condition) {
+function getWeatherAppearance(condition) {
 	const description = condition.toLowerCase();
 
 	if (description.includes("snow")) {
-		return CloudSnow;
+		return {
+			icon: CloudSnow,
+			color: "#bae6fd",
+		};
 	}
 
 	if (description.includes("rain")) {
-		return CloudRain;
+		return {
+			icon: CloudRain,
+			color: "#60a5fa",
+		};
 	}
 
 	if (description.includes("partially cloudy")) {
-		return CloudSun;
+		return {
+			icon: CloudSun,
+			color: "#fbbf24",
+		};
 	}
 
 	if (description.includes("cloud") || description.includes("overcast")) {
-		return Cloud;
+		return {
+			icon: Cloud,
+			color: "#94a3b8",
+		};
 	}
 
 	if (description.includes("clear") || description.includes("sunny")) {
-		return Sun;
+		return {
+			icon: Sun,
+			color: "#fbbf24"
+		}
 	}
 
-	return CloudSun;
+	return {
+		icon: CloudSun,
+		color: "#fbbf24",
+	};
 }
 
 function renderWeather(weather, unit = "F") {
@@ -126,13 +144,15 @@ function renderWeather(weather, unit = "F") {
 	const summaryIcon = document.createElement("div");
 	summaryIcon.classList.add("weather-summary-icon");
 
-	const weatherIcon = getWeatherIcon(weather.condition);
+	const appearance = getWeatherAppearance(weather.condition);
 
-	const conditionIcon = createElement(weatherIcon, {
+	const conditionIcon = createElement(appearance.icon, {
 		"aria-hidden": "true",
 		width: 42,
 		height: 42,
 	});
+
+	summaryIcon.style.color = appearance.color;
 
 	summaryIcon.append(conditionIcon);
 
