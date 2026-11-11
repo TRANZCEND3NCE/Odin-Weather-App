@@ -75,7 +75,7 @@ function createUnitsCard(unit) {
 }
 
 function getWeatherAppearance(condition) {
-	const description = condition.toLowerCase();
+	const description = (condition ?? "").toLowerCase();
 
 	if (description.includes("snow")) {
 		return {
@@ -108,7 +108,7 @@ function getWeatherAppearance(condition) {
 	if (description.includes("clear") || description.includes("sunny")) {
 		return {
 			icon: Sun,
-			color: "#fbbf24"
+			color: "#fbbf24",
 		}
 	}
 

@@ -35,6 +35,10 @@ async function getWeather(location) {
 function processWeatherData(data) {
 	const current = data.currentConditions;
 
+	if (!current) {
+		throw new Error("Weather data is unavailable for this location.");
+	}
+
 	return {
 		location: data.resolvedAddress,
 		temperature: current.temp,

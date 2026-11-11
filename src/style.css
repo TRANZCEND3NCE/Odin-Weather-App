@@ -15,6 +15,7 @@ body {
 }
 
 main {
+	display: block;
 	width: 100%;
 	max-width: 680px;
 	padding: 2rem;
@@ -38,6 +39,12 @@ main {
 
 #location::placeholder {
 	color: #cbd5e1;
+}
+
+#location:focus-visible,
+#weather-form .search-button:focus-visible {
+	outline: 2px solid #93c5fd;
+	outline-offset: 1px;
 }
 
 .search-field {
@@ -259,7 +266,7 @@ main {
 	}
 
 	.weather-card-value {
-		font-size: 1.5rem;
+		font-size: 1.1rem;
 	}
 }
 

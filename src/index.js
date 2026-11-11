@@ -62,7 +62,6 @@ form.addEventListener("submit", async (e) => {
 				
 		errorDisplay.hidden = false;
 	} finally {
-
 		isLoading = false;
 		loadingDisplay.hidden = true;
 		searchButton.disabled = false;
