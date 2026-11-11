@@ -1,7 +1,7 @@
 import "./style.css";
 import { getWeather, processWeatherData } from "./weather.js";
 import { renderWeather } from "./dom.js";
-import { createElement, Search } from "lucide";
+import { createElement, Search, LoaderCircle } from "lucide";
 
 const form = document.querySelector("#weather-form");
 const locationInput = document.querySelector("#location");
@@ -17,6 +17,14 @@ const searchIcon = createElement(Search, {
 });
 
 searchButton.append(searchIcon);
+
+const loadingIcon = createElement(LoaderCircle, {
+	"aria-hidden": "true",
+	width: 20,
+	height: 20,
+});
+
+loadingDisplay.prepend(loadingIcon);
 
 let currentWeather = null;
 let currentUnit = "F";

@@ -197,6 +197,9 @@ main {
 }
 
 #weather-loading {
+	display: flex;
+	align-items: center;
+	gap: 10px;
 	margin: 16px 0;
 	color: #bfdbfe;
 	font-size: 0.95rem;
@@ -204,6 +207,17 @@ main {
 
 #weather-loading[hidden] {
 	display: none;
+}
+
+#weather-loading svg {
+	flex-shrink: 0;
+	animation: weather-spin 1s linear infinite;
+}
+
+@keyframes weather-spin {
+	to {
+		transform: rotate(360deg);
+	}
 }
 
 #weather-form .search-button:disabled {
@@ -236,5 +250,11 @@ main {
 
 	.weather-card-value {
 		font-size: 1.5rem;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	#weather-loading svg {
+		animation: none;
 	}
 }
