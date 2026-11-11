@@ -1,4 +1,15 @@
-import { createElement, Thermometer, CloudSun, Droplets, Wind, RefreshCcw } from "lucide";
+import {
+  createElement,
+  Thermometer,
+  CloudSun,
+  Cloud,
+  CloudRain,
+  CloudSnow,
+  Sun,
+  Droplets,
+  Wind,
+  RefreshCcw,
+} from "lucide";
 
 function fahrenheitToCelsius(fahrenheit) {
 	return (fahrenheit - 32) * (5 / 9);
@@ -63,6 +74,32 @@ function createUnitsCard(unit) {
 	return button;
 }
 
+function getWeatherIcon(condition) {
+	const description = condition.toLowerCase();
+
+	if (description.includes("snow")) {
+		return CloudSnow;
+	}
+
+	if (description.includes("rain")) {
+		return CloudRain;
+	}
+
+	if (description.includes("partially cloudy")) {
+		return CloudSun;
+	}
+
+	if (description.includes("cloud") || description.includes("overcast")) {
+		return Cloud;
+	}
+
+	if (description.includes("clear") || description.includes("sunny")) {
+		return Sun;
+	}
+
+	return CloudSun;
+}
+
 function renderWeather(weather, unit = "F") {
 	const weatherDisplay = document.querySelector("#weather-display");
 
@@ -89,7 +126,9 @@ function renderWeather(weather, unit = "F") {
 	const summaryIcon = document.createElement("div");
 	summaryIcon.classList.add("weather-summary-icon");
 
-	const conditionIcon = createElement(CloudSun, {
+	const weatherIcon = getWeatherIcon(weather.condition);
+
+	const conditionIcon = createElement(weatherIcon, {
 		"aria-hidden": "true",
 		width: 42,
 		height: 42,
