@@ -8,6 +8,7 @@ const locationInput = document.querySelector("#location");
 const errorDisplay = document.querySelector("#weather-error");
 const searchButton = document.querySelector("#search-button");
 const weatherDisplay = document.querySelector("#weather-display");
+const loadingDisplay = document.querySelector("#weather-loading");
 
 const searchIcon = createElement(Search, {
 	"aria-hidden": "true",
@@ -19,9 +20,12 @@ searchButton.append(searchIcon);
 
 let currentWeather = null;
 let currentUnit = "F";
+let isLoading = false;
 
 form.addEventListener("submit", async (e) => {
 	e.preventDefault();
+
+	if (isLoading) return;
 
 	const location = locationInput.value.trim();
 
@@ -29,6 +33,10 @@ form.addEventListener("submit", async (e) => {
 
 	errorDisplay.textContent = "";
 	errorDisplay.hidden = true;
+
+	isLoading = true;
+	loadingDisplay.hidden = false;
+	searchButton.disabled = true;
 
 	try {
 		const data = await getWeather(location);
@@ -41,6 +49,11 @@ form.addEventListener("submit", async (e) => {
 
 		errorDisplay.textContent = error.message;
 		errorDisplay.hidden = false;
+	} finally {
+
+		isLoading = false;
+		loadingDisplay.hidden = true;
+		searchButton.disabled = false;
 	}
 });
 

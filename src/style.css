@@ -196,6 +196,21 @@ main {
 	display: none;
 }
 
+#weather-loading {
+	margin: 16px 0;
+	color: #bfdbfe;
+	font-size: 0.95rem;
+}
+
+#weather-loading[hidden] {
+	display: none;
+}
+
+#weather-form .search-button:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
 @media (max-width: 600px) {
 	body {
 		padding: 1rem;
