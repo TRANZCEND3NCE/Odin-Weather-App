@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Odin Weather App</title>
+<script defer src="main.js"></script></head>
+<body>
+
+	<main>
+		<h1>Weather App</h1>
+
+		<form id="weather-form">
+			<label for="location">Enter Location:</label>
+
+			<div class="search-field">
+				<input
+				  type="text"
+				  id="location"
+				  name="location"
+				  placeholder="e.g., Orlando, FL"
+				  required
+			  />
+
+			<button 
+				type="submit"
+				id="search-button"
+				class="search-button"
+				aria-label="Search weather"
+			 ></button>
+			</div>
+		</form>
+
+		<p id="weather-error" role="alert" hidden></p>
+
+		<p id="weather-loading" role="status" hidden>Loading weather...</p>
+
+		<section id="weather-display">
+			<p class="weather-empty">
+				Search for a location to see the current weather.
+			</p>
+		</section>
+	</main>
+	
+</body>
+</html>
